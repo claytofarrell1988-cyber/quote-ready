@@ -97,6 +97,27 @@
       padding-top: 1rem;
       padding-bottom: 2.5rem;
     }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin: 0 0 0.75rem;
+    }
+    .brand .mark { margin: 0; }
+    .brand img {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 4px;
+      flex: none;
+    }
+    .hero {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0 0 1rem;
+      border-radius: 8px;
+    }
     @media (max-width: 36rem) {
       h1 { font-size: 1.8rem; }
     }
@@ -104,8 +125,12 @@
 </head>
 <body>
   <header>
-    <p class="mark">Quote Ready · Ireland</p>
+    <div class="brand">
+      <img src="mark.jpg" width="48" height="48" alt="Envelope mark">
+      <p class="mark">Quote Ready · Ireland</p>
+    </div>
     <h1>A first quote, and the follow-up three days later, written for you to send.</h1>
+    <img class="hero" src="hero.jpg" alt="Workbench">
     <p class="lede">Quote Ready is for Irish trades and small agencies. You get one quote for one enquiry, plus a short follow-up meant for three days later. You send both from your own email. €79 once. Nothing is sent to your customer until Kenneth has approved that exact message.</p>
     <a class="start" href="intake.html">Start with the intake</a>
     <a class="start-secondary" href="mailto:farrellfieldnotes@agentmail.to?subject=Quote%20Ready%20enquiry">Email farrellfieldnotes@agentmail.to</a>
