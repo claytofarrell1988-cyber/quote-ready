@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quote Ready — intake</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1b2430;
+      --muted: #526072;
+      --line: #d5dde6;
+      --paper: #f4f7fb;
+      --card: #ffffff;
+      --accent: #1d4e89;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.45;
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+    h1 { font-size: 1.75rem; line-height: 1.2; margin: 0 0 0.35rem; }
+    .who { margin: 0 0 1rem; color: var(--muted); }
+    .note, form, .out {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+    }
+    .note { margin: 0 0 1.25rem; }
+    form { display: grid; gap: 0.85rem; }
+    label { display: grid; gap: 0.3rem; font-size: 0.98rem; }
+    .hint { color: var(--muted); font-family: "Segoe UI", Helvetica, Arial, sans-serif; font-size: 0.82rem; }
+    input, textarea {
+      font: 1rem/1.4 "Segoe UI", Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 0.5rem 0.6rem;
+      width: 100%;
+    }
+    textarea { min-height: 5.5rem; resize: vertical; }
+    button {
+      font: 600 1rem/1.2 "Segoe UI", Helvetica, Arial, sans-serif;
+      color: #fff;
+      background: var(--accent);
+      border: 0;
+      border-radius: 6px;
+      padding: 0.7rem 1rem;
+      cursor: pointer;
+    }
+    button.secondary { color: var(--ink); background: #fff; border: 1px solid var(--line); }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    #status { min-height: 1.4rem; font-family: "Segoe UI", Helvetica, Arial, sans-serif; font-size: 0.95rem; margin: 0; }
+    .out { margin-top: 1.25rem; }
+    .out[hidden] { display: none; }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 0.85rem;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 0.75rem;
+      margin: 0.5rem 0 0;
+    }
+    a { color: var(--accent); }
+    footer {
+      max-width: 40rem;
+      margin: 0 auto;
+      padding: 0 1.25rem 2.5rem;
+      color: var(--muted);
+      font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="who" style="font-family:Segoe UI,Helvetica,Arial,sans-serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;color:#1d4e89;margin:0 0 0.75rem;">Quote Ready · Ireland</p>
+    <h1>Intake</h1>
+    <p class="who">One enquiry. €79 once. Kenneth Farrell, Ireland. This page does not take payment.</p>
+    <p class="note">Submit only builds <strong>case.txt</strong> on this computer and downloads it. Nothing is sent over the network. This does not email your customer. Do not put card numbers or bank logins in the form.</p>
+    <form id="intake" action="javascript:void(0)" novalidate>
+      <label>Your name
+        <input id="owner_name" name="owner_name" autocomplete="name" required maxlength="200">
+      </label>
+      <label>Business name
+        <input id="business_name" name="business_name" autocomplete="organization" required maxlength="200">
+      </label>
+      <label>Your email
+        <span class="hint">The address you will send the quote from. This form does not send mail.</span>
+        <input id="owner_email" name="owner_email" type="email" autocomplete="email" required maxlength="200">
+      </label>
+      <label>Trade, or what the agency does
+        <input id="trade" name="trade" required maxlength="200">
+      </label>
+      <label>Town
+        <input id="town" name="town" required maxlength="120">
+      </label>
+      <label>Your customer’s name
+        <span class="hint">The person or business who asked for the quote.</span>
+        <input id="client_name" name="client_name" required maxlength="200">
+      </label>
+      <label>Your customer’s email
+        <span class="hint">Optional. Quote Ready will not email this address.</span>
+        <input id="client_email" name="client_email" type="email" maxlength="200">
+      </label>
+      <label>What they asked for
+        <textarea id="enquiry" name="enquiry" required maxlength="4000"></textarea>
+      </label>
+      <label>Your prices
+        <span class="hint">One line each. Quantity and your figure. Only numbers you have decided. Leave a line blank in your own notes rather than guessing here.</span>
+        <textarea id="prices" name="prices" required maxlength="4000"></textarea>
+      </label>
+      <label>Included
+        <textarea id="included" name="included" maxlength="2000"></textarea>
+      </label>
+      <label>Not included
+        <textarea id="excluded" name="excluded" maxlength="2000"></textarea>
+      </label>
+      <label>How you want to be paid
+        <span class="hint">Your words. For example: on completion, by bank transfer to the account you already use. No card numbers.</span>
+        <textarea id="payment_terms" name="payment_terms" maxlength="1000"></textarea>
+      </label>
+      <label>How many days the price stands
+        <input id="valid_days" name="valid_days" type="number" inputmode="numeric" min="1" max="365" required>
+      </label>
+      <label>Note
+        <span class="hint">Optional. Anything the draft should not miss. Not a place for passwords.</span>
+        <textarea id="note" name="note" maxlength="2000"></textarea>
+      </label>
+      <button type="submit">Download case.txt</button>
+      <p id="status" role="status"></p>
+    </form>
+    <section id="output" class="out" hidden>
+      <h2 style="font-family:Segoe UI,Helvetica,Arial,sans-serif;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;margin:0;">Case file</h2>
+      <p class="hint">Not sent. Copy this, or download it again. Email the file to farrellfieldnotes@agentmail.to if you want the job started. Do not email it to your customer.</p>
+      <pre id="case-text" tabindex="0"></pre>
+      <div class="actions">
+        <button type="button" id="download">Download case.txt</button>
+        <button type="button" class="secondary" id="copy">Select text</button>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>Quote Ready. Local intake only. <a href="index.html">Back to the service page</a>. This page is not a quote that has been sent.</p>
+  </footer>
+  <script>
+    (function () {
+      var form = document.getElementById("intake");
+      var status = document.getElementById("status");
+      var output = document.getElementById("output");
+      var caseText = document.getElementById("case-text");
+      var latest = "";
+
+      function clean(value) {
+        return String(value == null ? "" : value).replace(/\r\n/g, "\n").replace(/\r/g, "\n").trim();
+      }
+
+      function field(id) {
+        var text = clean(document.getElementById(id).value);
+        return text.length ? text : "(not supplied)";
+      }
+
+      function stamp() {
+        var d = new Date();
+        function pad(n) { return String(n).padStart(2, "0"); }
+        return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate())
+          + " " + pad(d.getHours()) + ":" + pad(d.getMinutes()) + " (local)";
+      }
+
+      function build() {
+        var lines = [
+          "Quote Ready — case file",
+          "Market: Ireland",
+          "Operator: Kenneth Farrell",
+          "Price noted: EUR 79 once for one enquiry (quote + 3-day follow-up). This file is not a payment.",
+          "Status: local intake only. Not sent to the customer. Not approved.",
+          "",
+          "Saved: " + stamp(),
+          "",
+          "Owner name: " + field("owner_name"),
+          "Business name: " + field("business_name"),
+          "Owner email (they send from this address): " + field("owner_email"),
+          "Trade: " + field("trade"),
+          "Town: " + field("town"),
+          "Customer name: " + field("client_name"),
+          "Customer email (do not email from this file): " + field("client_email"),
+          "Days the price stands: " + field("valid_days"),
+          "",
+          "What they asked for:",
+          field("enquiry"),
+          "",
+          "Prices the owner supplied (do not add figures):",
+          field("prices"),
+          "",
+          "Included:",
+          field("included"),
+          "",
+          "Not included:",
+          field("excluded"),
+          "",
+          "How they want to be paid:",
+          field("payment_terms"),
+          "",
+          "Note:",
+          field("note"),
+          "",
+          "Next step: draft the quote and the 3-day follow-up for the owner to send.",
+          "Do not email their customer until Kenneth has approved that exact message."
+        ];
+        return lines.join("\n") + "\n";
+      }
+
+      function downloadText(text) {
+        var blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = "case.txt";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        status.textContent = "";
+        if (!form.reportValidity()) {
+          status.textContent = "Fill the required fields. Nothing was saved.";
+          return;
+        }
+        var days = Number(document.getElementById("valid_days").value);
+        if (!isFinite(days) || days < 1) {
+          status.textContent = "Enter how many days the price stands. Nothing was saved.";
+          return;
+        }
+        latest = build();
+        caseText.textContent = latest;
+        output.hidden = false;
+        downloadText(latest);
+        status.textContent = "Saved case.txt on this computer. Nothing was sent.";
+      });
+
+      document.getElementById("download").addEventListener("click", function () {
+        if (!latest) return;
+        downloadText(latest);
+        status.textContent = "Download started. Nothing was sent.";
+      });
+
+      document.getElementById("copy").addEventListener("click", function () {
+        if (!latest) return;
+        var range = document.createRange();
+        range.selectNodeContents(caseText);
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        status.textContent = "Text selected. Nothing was sent.";
+      });
+    }());
+  </script>
+</body>
+</html>
